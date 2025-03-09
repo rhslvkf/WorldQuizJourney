@@ -12,6 +12,12 @@ export default {
   settings: {
     title: "Configurações",
     language: "Idioma",
+    theme: "Tema",
+    themeMode: {
+      light: "Modo claro",
+      dark: "Modo escuro",
+      title: "Aparência",
+    },
     save: "Salvar",
     cancel: "Cancelar",
   },

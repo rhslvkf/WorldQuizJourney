@@ -1,10 +1,10 @@
 export default {
   splash: {
     loading: "Cargando...",
-    appName: "Viaje de Quiz Mundial",
+    appName: "Aventura Quiz Mundial",
   },
   main: {
-    title: "Viaje de Quiz Mundial",
+    title: "Aventura Quiz Mundial",
     subtitle: "¡Resuelve cuestionarios interesantes de todo el mundo!",
     startGame: "Iniciar Juego",
     settings: "Configuración",
@@ -12,6 +12,12 @@ export default {
   settings: {
     title: "Configuración",
     language: "Idioma",
+    theme: "Tema",
+    themeMode: {
+      light: "Modo claro",
+      dark: "Modo oscuro",
+      title: "Apariencia",
+    },
     save: "Guardar",
     cancel: "Cancelar",
   },

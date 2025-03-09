@@ -2,25 +2,46 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Modal } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 import SettingsScreen from "./SettingsScreen";
 
 const MainScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const { t } = useLanguage();
+  const { colors } = useTheme();
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <Text style={styles.title}>{t("main.title")}</Text>
-      <Text style={styles.subtitle}>{t("main.subtitle")}</Text>
+    <View
+      style={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          backgroundColor: colors.background,
+        },
+      ]}
+    >
+      <Text style={[styles.title, { color: colors.primary }]}>{t("main.title")}</Text>
+      <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{t("main.subtitle")}</Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: colors.primary }]}>
           <Text style={styles.buttonText}>{t("main.startGame")}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.secondaryButton]} onPress={() => setIsSettingsVisible(true)}>
-          <Text style={styles.secondaryButtonText}>{t("main.settings")}</Text>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            styles.secondaryButton,
+            {
+              backgroundColor: "transparent",
+              borderColor: colors.primary,
+            },
+          ]}
+          onPress={() => setIsSettingsVisible(true)}
+        >
+          <Text style={[styles.secondaryButtonText, { color: colors.primary }]}>{t("main.settings")}</Text>
         </TouchableOpacity>
       </View>
 
@@ -40,7 +61,6 @@ const MainScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f8ff",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
@@ -48,13 +68,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "bold",
-    color: "#2a6cbf",
     marginBottom: 10,
     textAlign: "center",
   },
   subtitle: {
     fontSize: 18,
-    color: "#666",
     marginBottom: 40,
     textAlign: "center",
   },
@@ -63,7 +81,6 @@ const styles = StyleSheet.create({
     maxWidth: 300,
   },
   button: {
-    backgroundColor: "#4f9ef8",
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -81,12 +98,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   secondaryButton: {
-    backgroundColor: "transparent",
     borderWidth: 2,
-    borderColor: "#4f9ef8",
   },
   secondaryButtonText: {
-    color: "#4f9ef8",
     fontSize: 18,
     fontWeight: "bold",
   },

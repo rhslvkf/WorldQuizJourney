@@ -6,6 +6,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // 다국어 지원
 import { LanguageProvider } from "./src/i18n/LanguageContext";
+// 테마 지원
+import { ThemeProvider, useTheme } from "./src/contexts/ThemeContext";
 
 // 컴포넌트 불러오기
 import SplashScreenComponent from "./src/components/splash/SplashScreen";
@@ -16,10 +18,18 @@ SplashScreen.preventAutoHideAsync().catch(() => {
   /* 오류 무시 */
 });
 
-export default function App() {
+// StatusBar 컴포넌트
+const ThemedStatusBar = () => {
+  const { isDark } = useTheme();
+  return <StatusBar style={isDark ? "light" : "dark"} />;
+};
+
+// 앱 컨텐츠 컴포넌트
+const AppContent = () => {
   // 상태 관리
   const [appIsReady, setAppIsReady] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const { colors } = useTheme();
 
   // 앱 로딩 처리
   useEffect(() => {
@@ -54,14 +64,21 @@ export default function App() {
   }
 
   return (
-    <LanguageProvider>
-      <SafeAreaProvider>
-        <View style={styles.container} onLayout={onLayoutRootView}>
-          <StatusBar style="auto" />
+    <View style={[styles.container, { backgroundColor: colors.background }]} onLayout={onLayoutRootView}>
+      <ThemedStatusBar />
+      {showSplash ? <SplashScreenComponent onFinish={onSplashFinish} /> : <MainScreen />}
+    </View>
+  );
+};
 
-          {showSplash ? <SplashScreenComponent onFinish={onSplashFinish} /> : <MainScreen />}
-        </View>
-      </SafeAreaProvider>
+export default function App() {
+  return (
+    <LanguageProvider>
+      <ThemeProvider>
+        <SafeAreaProvider>
+          <AppContent />
+        </SafeAreaProvider>
+      </ThemeProvider>
     </LanguageProvider>
   );
 }

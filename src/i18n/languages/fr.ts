@@ -12,6 +12,12 @@ export default {
   settings: {
     title: "Paramètres",
     language: "Langue",
+    theme: "Thème",
+    themeMode: {
+      light: "Mode clair",
+      dark: "Mode sombre",
+      title: "Apparence",
+    },
     save: "Enregistrer",
     cancel: "Annuler",
   },

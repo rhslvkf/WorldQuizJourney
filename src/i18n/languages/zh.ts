@@ -12,6 +12,12 @@ export default {
   settings: {
     title: "设置",
     language: "语言",
+    theme: "主题",
+    themeMode: {
+      light: "浅色模式",
+      dark: "深色模式",
+      title: "外观",
+    },
     save: "保存",
     cancel: "取消",
   },

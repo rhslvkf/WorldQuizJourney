@@ -12,6 +12,12 @@ export default {
   settings: {
     title: "設定",
     language: "言語",
+    theme: "テーマ",
+    themeMode: {
+      light: "ライトモード",
+      dark: "ダークモード",
+      title: "外観",
+    },
     save: "保存",
     cancel: "キャンセル",
   },
